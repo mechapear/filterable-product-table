@@ -10,15 +10,17 @@ function productRows(PRODUCTS_DATA: Products[]) {
     if (PRODUCTS_DATA[i].category !== prevCategory) {
       rows.push(
         <tr>
-          <th>{PRODUCTS_DATA[i].category}</th>
+          <th className="categoryRow" colSpan={2}>
+            {PRODUCTS_DATA[i].category}
+          </th>
         </tr>,
       )
     }
     // Add product row
     rows.push(
       <tr>
-        <td>{PRODUCTS_DATA[i].name}</td>
-        <td>{PRODUCTS_DATA[i].price}</td>
+        <td className="productRow">{PRODUCTS_DATA[i].name}</td>
+        <td className="productRow">{PRODUCTS_DATA[i].price}</td>
       </tr>,
     )
     prevCategory = PRODUCTS_DATA[i].category
@@ -29,21 +31,29 @@ function productRows(PRODUCTS_DATA: Products[]) {
 export default function App() {
   return (
     <>
-      <form className="searchBar">
-        <input type="text" placeholder="Search" />
-        <input type="checkbox" />
-        <label>Only show products in stock</label>
-      </form>
-      <div className="productTable">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>{productRows(PRODUCTS_DATA)}</tbody>
-        </table>
+      <div className="boardWrapper">
+        <form className="searchBar">
+          <input
+            className="searchBox"
+            type="text"
+            placeholder="Search products..."
+          />
+          <label className="searchOption">
+            {' '}
+            <input type="checkbox" /> Only show products in stock
+          </label>
+        </form>
+        <div className="tableWrapper">
+          <table className="productTable">
+            <thead>
+              <tr>
+                <th className="headerRow">Name</th>
+                <th className="headerRow">Price</th>
+              </tr>
+            </thead>
+            <tbody>{productRows(PRODUCTS_DATA)}</tbody>
+          </table>
+        </div>
       </div>
     </>
   )
