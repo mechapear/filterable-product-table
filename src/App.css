@@ -1,27 +1,27 @@
 .boardWrapper {
-    padding: 16px;
+    padding: 1rem;
     margin: 0 auto;
     border: 1px solid var(--secondary-color);
-    border-radius: 6px;
+    border-radius: 0.5rem;
 }
 .searchBar {
-    margin: 16px;
+    margin: 1rem;
 }
 .searchBox {
-    padding: 12px;
+    padding: 0.75rem;
     width: 100%;
     border: 1px solid var(--secondary-color);
-    border-radius: 6px;
+    border-radius: 0.5rem;
 }
 .searchBox:focus {
     outline: none;
     border-color: var(--primary-color);
 }
 .searchOption {
-    padding: 6px 0;
+    padding: 0.5rem 0;
 }
 .tableWrapper {
-    margin: 28px 16px;
+    margin: 1.75rem 1rem;
 }
 .productTable {
     width: 100%;
@@ -30,10 +30,10 @@
     text-align: left;
 }
 .headerRow {
-    height: 48px;
+    height: 3rem;
 }
 .headerRow, .categoryRow, .productRow {
-    padding: 12px;
+    padding: 0.75rem;
     border-bottom: 1px solid var(--table-border);
 }
 .categoryRow {
@@ -42,7 +42,7 @@
 
 @media only screen and (min-width: 768px) {
     .boardWrapper {
-        width: 700px;
+        width: 40rem;
         height: 100%;
     }
 }
