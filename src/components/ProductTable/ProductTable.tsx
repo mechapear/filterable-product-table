@@ -1,33 +1,55 @@
-import { Products, PRODUCTS_DATA } from '../../domain/products.ts'
+import { PRODUCTS_DATA } from '../../domain/products.ts'
 
-function productRows(PRODUCTS_DATA: Products[]) {
-  const rows = []
-  let prevCategory = ''
+export type ProductTableProps = {
+  searchBoxValue: string
+  checkboxValue: boolean
+}
 
-  for (let i = 0; i < PRODUCTS_DATA.length; i++) {
+function getFilterProductList(searchBoxValue: string, checkboxValue: boolean) {
+  const filteredProductListByName = searchBoxValue
+    ? PRODUCTS_DATA.filter((item) =>
+        item.name.toLowerCase().includes(searchBoxValue.toLowerCase()),
+      )
+    : PRODUCTS_DATA
+
+  // filteredProductListByStocked
+  return checkboxValue
+    ? filteredProductListByName.filter((item) => item.stocked === checkboxValue)
+    : filteredProductListByName
+}
+
+export default function ProductTable({
+  searchBoxValue,
+  checkboxValue,
+}: ProductTableProps) {
+  const filteredProductList = getFilterProductList(
+    searchBoxValue,
+    checkboxValue,
+  )
+
+  const rows: JSX.Element[] = []
+
+  filteredProductList.forEach((item, index) => {
+    const prevCategory = filteredProductList[index - 1]?.category ?? ''
     // Add category row if it's a new category
-    if (PRODUCTS_DATA[i].category !== prevCategory) {
+    if (item.category !== prevCategory) {
       rows.push(
-        <tr>
+        <tr key={item.category}>
           <th className="categoryRow" colSpan={2}>
-            {PRODUCTS_DATA[i].category}
+            {item.category}
           </th>
         </tr>,
       )
     }
-    // Add product row
+    // Add product item row
     rows.push(
-      <tr>
-        <td className="productRow">{PRODUCTS_DATA[i].name}</td>
-        <td className="productRow">{PRODUCTS_DATA[i].price}</td>
+      <tr key={item.name}>
+        <td className="productRow">{item.name}</td>
+        <td className="productRow">{item.price}</td>
       </tr>,
     )
-    prevCategory = PRODUCTS_DATA[i].category
-  }
-  return rows
-}
+  })
 
-export default function ProductTable() {
   return (
     <table className="productTable">
       <thead>
@@ -36,7 +58,7 @@ export default function ProductTable() {
           <th className="headerRow">Price</th>
         </tr>
       </thead>
-      <tbody>{productRows(PRODUCTS_DATA)}</tbody>
+      <tbody>{rows}</tbody>
     </table>
   )
 }

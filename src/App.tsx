@@ -17,7 +17,10 @@ export default function App() {
           onCheckboxChange={setQueryInStock}
         />
         <div className="tableWrapper">
-          <ProductTable />
+          <ProductTable
+            searchBoxValue={searchText}
+            checkboxValue={queryInStock}
+          />
         </div>
       </div>
     </>
