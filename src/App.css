@@ -29,6 +29,12 @@
     border-collapse: collapse;
     text-align: left;
 }
+.nameCol {
+    width: 60%;
+}
+.priceCol {
+    width: 40%;
+}
 .headerRow {
     height: 3rem;
 }

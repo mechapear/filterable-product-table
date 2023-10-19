@@ -45,10 +45,14 @@ export default function ProductTable({
     // Add product item row
     rows.push(
       <tr key={item.name}>
-        <td className={clsx('productRow', { outOfStock: !item.stocked })}>
+        <td
+          className={clsx('productRow nameCol', { outOfStock: !item.stocked })}
+        >
           {item.name}
         </td>
-        <td className={clsx('productRow', { outOfStock: !item.stocked })}>
+        <td
+          className={clsx('productRow priceCol', { outOfStock: !item.stocked })}
+        >
           {item.price}
         </td>
       </tr>,
@@ -59,8 +63,8 @@ export default function ProductTable({
     <table className="productTable">
       <thead>
         <tr>
-          <th className="headerRow">Name</th>
-          <th className="headerRow">Price</th>
+          <th className="headerRow nameCol">Name</th>
+          <th className="headerRow priceCol">Price</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
