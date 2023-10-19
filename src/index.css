@@ -2,8 +2,10 @@
   --primary-color: #272829;
   --secondary-color: #f1f1f1;;
   --table-color: white;
-  --table-header: #f1f1f18a;
+  --table-header: #dfdfdf8a;
   --table-border: #f1f1f1;
+  --disabled-row: #f8f8f8;
+  --disabled-text: #a6a6a6;
 }
 
 * {
@@ -61,7 +63,4 @@ label {
   display: block;
   margin-top: 5px;
   margin-bottom: 5px;
-}
-th {
-  font-weight: normal;
 }

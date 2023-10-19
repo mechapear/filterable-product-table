@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { PRODUCTS_DATA } from '../../domain/products.ts'
 
 export type ProductTableProps = {
@@ -44,8 +45,12 @@ export default function ProductTable({
     // Add product item row
     rows.push(
       <tr key={item.name}>
-        <td className="productRow">{item.name}</td>
-        <td className="productRow">{item.price}</td>
+        <td className={clsx('productRow', { outOfStock: !item.stocked })}>
+          {item.name}
+        </td>
+        <td className={clsx('productRow', { outOfStock: !item.stocked })}>
+          {item.price}
+        </td>
       </tr>,
     )
   })
